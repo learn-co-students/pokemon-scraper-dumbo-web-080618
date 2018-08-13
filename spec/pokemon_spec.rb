@@ -1,5 +1,5 @@
 require_relative "spec_helper"
-
+require "pry"
 describe "Pokemon" do
   before do
     @db = SQLite3::Database.new(':memory:')
@@ -34,6 +34,8 @@ describe "Pokemon" do
       Pokemon.save("Pikachu", "electric", @db)
 
       pikachu_from_db = Pokemon.find(1, @db)
+
+      # binding.pry
       expect(pikachu_from_db.id).to eq(1)
       expect(pikachu_from_db.name).to eq("Pikachu")
       expect(pikachu_from_db.type).to eq("electric")
